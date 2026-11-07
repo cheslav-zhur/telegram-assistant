@@ -7,10 +7,11 @@ import sys
 from typing import Any
 
 
-def emit_json(payload: dict[str, Any], *, file=sys.stdout) -> None:
-    json.dump(payload, file, ensure_ascii=False, default=str)
-    file.write("\n")
-    file.flush()
+def emit_json(payload: dict[str, Any], *, file=None) -> None:
+    out = sys.stdout if file is None else file
+    json.dump(payload, out, ensure_ascii=False, default=str)
+    out.write("\n")
+    out.flush()
 
 
 def fail(

@@ -1,0 +1,4 @@
+# Dev / test deps — pin when adding packages
+-r requirements.txt
+pytest==9.2.0
+pytest-asyncio==1.4.1

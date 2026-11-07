@@ -4,6 +4,7 @@
 
 - Python 3.12 (devcontainer: `mcr.microsoft.com/devcontainers/python:3.12-bookworm`)
 - Deps: `requirements.txt` (`telethon`, `python-dotenv`)
+- Dev/test: `requirements-dev.txt` (`pytest`, `pytest-asyncio`)
 - Secrets: `.env` (gitignored). Session: `.data/secondary.session` (gitignored)
 - Local operator notes / curated lists: `private/` (gitignored)
 
@@ -11,12 +12,21 @@
 
 ```bash
 pip install -r requirements.txt   # only after explicit ok / go ahead
+pip install -r requirements-dev.txt   # tests; after ok / go ahead
 cp .env.example .env              # TELEGRAM_API_ID / TELEGRAM_API_HASH from my.telegram.org
 python -m tg_assistant auth       # interactive terminal; secondary account only
 python -m tg_assistant status
 ```
 
 `postCreateCommand` in `.devcontainer/devcontainer.json` runs `pip install -r requirements.txt` on container create.
+
+## Tests
+
+Unit/async tests mock Telethon — no live Telegram, no `.env` / session reads.
+
+```bash
+python -m pytest
+```
 
 ## Commands
 
