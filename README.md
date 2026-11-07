@@ -1,31 +1,30 @@
-# telegram-assistant
+# My Telegram assistant
 
-Local CLI for Cursor: sign in a **secondary** Telegram user account and run ask-time search across dialogs that account already joined (Telethon / MTProto).
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Telethon](https://img.shields.io/badge/Telethon-1.45-26A5E4?logo=telegram&logoColor=white)](https://docs.telethon.dev/)
+[![Telegram](https://img.shields.io/badge/Telegram-MTProto-26A5E4?logo=telegram&logoColor=white)](https://core.telegram.org/)
 
-## Safety: secondary account only
+Local Telegram helper.
 
-Do **not** authenticate your primary personal Telegram account. Use a separate account that already belongs to the target groups/channels. The session file is `.data/secondary.session`.
+- Secondary user account (MTProto / Telethon)
+- Ask-time search across joined dialogs
+- Dialog and folder listing
+- Citeable hits: text, chat, link
 
-## Quick start
+## Not in this slice
 
-1. Create an app at [my.telegram.org](https://my.telegram.org) with the **secondary** account.
-2. Copy `.env.example` → `.env` and set `TELEGRAM_API_ID` / `TELEGRAM_API_HASH`.
-3. Install deps and log in once (interactive terminal) — see [docs/dev.md](docs/dev.md).
+- Local message index
+- Auto-join
+- Publishing
+- Monitoring
+- MCP
 
-```bash
-python -m tg_assistant status
-python -m tg_assistant dialogs
-python -m tg_assistant folders
-python -m tg_assistant search "query"
-python -m tg_assistant search "query" --chat -1001234567890 --limit 20
-```
+## Safety
 
-Machine commands (`status`, `dialogs`, `folders`, `search`) print **JSON only** on stdout. On rate limits they return `{"ok":false,"error":"flood_wait","seconds":N}` and a non-zero exit code (no auto-retry).
+- Do not authenticate a primary personal account
+- Session path: `.data/secondary.session`
 
-## For Cursor Agent
+## Docs
 
-1. Run `python -m tg_assistant status`.
-2. If `not_authorized`, ask the operator to run `auth` in a real terminal.
-3. Use `dialogs` or `folders` to see the searchable surface, then `search "…"` (optionally with `--chat`).
-
-This slice is auth + list dialogs/folders + ask-time search only. No local index, join, publish, or MCP.
+- Setup / CLI: [docs/dev.md](docs/dev.md)
+- Agent playbook: [AGENTS.md](AGENTS.md)
