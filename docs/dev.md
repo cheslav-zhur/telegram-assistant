@@ -28,6 +28,8 @@ Unit/async tests mock Telethon — no live Telegram, no `.env` / session reads.
 python -m pytest
 ```
 
+CI: [`.github/workflows/test.yml`](../.github/workflows/test.yml) runs the same on push/PR to `main` (Python 3.12, `requirements-dev.txt`).
+
 ## Commands
 
 ```bash
